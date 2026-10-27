@@ -92,7 +92,7 @@ export function PriceChart({ token }: { token: Token }) {
     };
   }, [token.mint, interval, retry]);
   return (
-    <section className="panel chart-panel">
+    <section className="trading-chart">
       <div className="chart-toolbar">
         <strong>${token.symbol} / USD</strong>
         <div>
@@ -108,6 +108,7 @@ export function PriceChart({ token }: { token: Token }) {
         </div>
         <span>Price · Volume</span>
       </div>
+      <div className="chart-ohlc">Price and volume in USD · actual pool OHLCV</div>
       <div className="chart-canvas" ref={container} />
       {loading && <p className="chart-message">Loading candles…</p>}
       {error && (

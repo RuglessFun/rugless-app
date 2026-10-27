@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { RiskNotice } from '@/components/risk-notice';
 import './globals.css';
 const mono = localFont({
   src: [
@@ -25,7 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
-        <RiskNotice />
       </body>
     </html>
   );

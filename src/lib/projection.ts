@@ -31,11 +31,23 @@ export function project(launches: number, percentile: number, usdPerSol: number)
           (initialUsd / usdPerSol) *
           (0.8 * 2 ** (-age / 3) + 0.2 * 2 ** (-age / 30))),
   );
-  const daily = Array.from(
-    { length: 90 },
-    (_, day) => launches * fees.slice(0, day + 1).reduce((a, b) => a + b, 0),
+  const cohorts = Array.from({ length: 3 }, () => Array<number>(90).fill(0));
+  for (let day = 0; day < 90; day++)
+    for (let launchDay = 0; launchDay <= day; launchDay++)
+      cohorts[Math.floor(launchDay / 30)][day] += launches * fees[day - launchDay];
+  const daily = Array.from({ length: 90 }, (_, day) =>
+    cohorts.reduce((sum, cohort) => sum + cohort[day], 0),
   );
   let total = 0;
   const cumulative = daily.map((v) => (total += v));
-  return { initialUsd, daily, cumulative, total };
+  return {
+    initialUsd,
+    initial: initialUsd / usdPerSol,
+    usdPerSol,
+    cohorts,
+    daily,
+    cumulative,
+    total,
+    tokens: launches,
+  };
 }
