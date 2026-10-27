@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # SECURITY: only trusted base-branch code. Never checkout a PR head here.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.sha || github.sha }}
       - uses: actions/github-script@v7
