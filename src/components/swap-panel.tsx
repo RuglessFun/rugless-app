@@ -84,11 +84,16 @@ export function SwapPanel({ token }: { token: Token }) {
     if (state === 'ready') window.Jupiter?.syncProps({ passthroughWalletContextState: wallet });
   }, [wallet, state]);
   return (
-    <aside className="swap-panel panel">
-      <div className="panel-title">
+    <aside className="swap-panel trade-card">
+      <div className="trade-heading">
         <h2>Trade ${token.symbol}</h2>
         <span className="badge">Mainnet</span>
       </div>
+      <p className="trade-intro">
+        The story and the market.
+        <br />
+        One place to make your call.
+      </p>
       {state === 'loading' && (
         <p className="panel-message" role="status">
           Loading secure swap…
@@ -115,7 +120,7 @@ export function SwapPanel({ token }: { token: Token }) {
           View transaction ↗
         </a>
       )}
-      <div className="swap-foot">
+      <div className="trade-bottom">
         <p>
           Powered by Jupiter. Review price impact, fees and minimum received, then approve in your
           wallet.

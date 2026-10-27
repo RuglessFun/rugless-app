@@ -13,6 +13,8 @@ import {
   Plus,
   ArrowLeft,
   PanelLeftClose,
+  Search,
+  ArrowUpRight,
 } from 'lucide-react';
 import {
   SidebarProvider,
@@ -30,6 +32,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { WalletButton } from './wallet-button';
+import { OriginalRisk } from './original/risk';
 const explore = [
   { label: 'Overview', href: '/app', icon: LayoutDashboard },
   { label: 'All tokens', href: '/app/tokens', icon: Coins },
@@ -39,7 +42,7 @@ const explore = [
 ];
 function Navigation() {
   const pathname = usePathname(),
-    { setOpenMobile, isMobile } = useSidebar();
+    { setOpenMobile, isMobile, state, toggleSidebar } = useSidebar();
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -53,7 +56,7 @@ function Navigation() {
           <button
             aria-label="Close menu"
             onClick={() => setOpenMobile(false)}
-            className="sidebar-close"
+            className="sidebar-mobile-close"
           >
             <PanelLeftClose size={18} />
           </button>
@@ -120,6 +123,16 @@ function Navigation() {
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
+        <button
+          className="collapse-label"
+          onClick={toggleSidebar}
+          aria-label={state === 'collapsed' ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <PanelLeftClose size={16} />
+          <span>
+            Collapse sidebar <kbd>⌘ B</kbd>
+          </span>
+        </button>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
@@ -136,20 +149,34 @@ export function AppShell({ children }: { children: ReactNode }) {
       style={{ '--sidebar-width': '15rem', '--sidebar-width-icon': '4rem' } as React.CSSProperties}
     >
       <Navigation />
-      <div className="workspace">
+      <div className="workspace-inset">
         <header className="workspace-header">
-          <div>
+          <div className="workspace-breadcrumb">
             <SidebarTrigger />
-            <span className="divider" />
+            <span className="breadcrumb-divider" />
             <Link href="/app">App</Link>
             <span>/</span>
             <strong>{title}</strong>
           </div>
+          <Link className="workspace-search" href="/app/tokens#search">
+            <Search size={15} />
+            <span>Find a token</span>
+          </Link>
+          <Link className="nominate-link" href="/#participate">
+            <Plus size={15} />
+            <span>Nominate a meme</span>
+          </Link>
           <WalletButton />
         </header>
-        <main id="main" className="workspace-main">
-          {children}
-        </main>
+        <div className="app-retained">
+          <main
+            id="main"
+            className={`wrap workspace-main ${pathname.startsWith('/app/tokens/') ? 'token-page' : 'discover-app'}`}
+          >
+            {children}
+          </main>
+          <OriginalRisk />
+        </div>
       </div>
     </SidebarProvider>
   );

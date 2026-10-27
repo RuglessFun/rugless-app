@@ -2,24 +2,40 @@ import Link from 'next/link';
 export default function Page() {
   return (
     <>
-      <div className="page-heading">
+      <section className="workspace-page-title">
         <div>
-          <p className="eyebrow">VERIFY THE MOVEMENT</p>
-          <h1>Follow every buy. Verify every burn.</h1>
-          <p>On-chain receipts belong here, not promises or invented counters.</p>
+          <h1>Follow the funds</h1>
+          <p>See which burns and buys have a receipt you can verify.</p>
         </div>
-      </div>
-      <section className="panel empty-state">
-        <span className="empty-symbol">↳</span>
-        <h2>No mainnet receipts indexed.</h2>
-        <p>
-          Rugless creator fees allocate 75% to the community pool and 25% to operations. Half the
-          pool creates new memes; half supports existing tokens. Net meme creator fees buy and burn
-          RUGLESS.
+        <span className="workspace-network">
+          <i className="status-dot" />
+          Solana
+        </span>
+      </section>
+      <section className="discovery-board">
+        <div className="app-section-title">
+          <h2>Buybacks &amp; burns</h2>
+        </div>
+        <p className="directory-count">
+          Published on-chain receipts · network shown on every record
         </p>
-        <Link className="primary-button" href="/#flywheel">
-          Follow the funds →
-        </Link>
+        <div className="support-explainer">
+          <span>[ + → ∞ ]</span>
+          <div>
+            <h3>Keep good communities alive.</h3>
+            <p>
+              Half the Community Pool launches new memes. Half supports existing ones through
+              buybacks, prioritizing social activity over volume. Each half is 37.5% of $RUGLESS
+              creator fees.
+            </p>
+          </div>
+          <Link href="/#flywheel">Follow the funds ↗</Link>
+        </div>
+        <div className="app-empty">
+          <span>[ ∅ ]</span>
+          <h3>No mainnet receipts indexed.</h3>
+          <p>Only recorded burns and spends appear here.</p>
+        </div>
       </section>
     </>
   );

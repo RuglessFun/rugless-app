@@ -24,6 +24,8 @@ The current market list includes **Nothing, REMUS, XD, Kimchi and CHICO**, selec
 
 X ingestion, AI launch execution, rewards, treasury buybacks and production deployment are **not implemented by this frontend**. The feed and receipt views have honest empty states. No fake posts, nominators, AI launch theses or mainnet receipts are inserted. Existing roadmap milestones remain planned unless evidence supports another state.
 
+The marketing page preserves the original site’s layout and animation code. Its counters remain explicitly labeled sample data; they are separate from the live market directory. See [design parity notes](docs/DESIGN-PARITY.md).
+
 ## Run locally
 
 Requires Node.js 24 and npm.

@@ -1,32 +1,61 @@
 export default function Page() {
   return (
     <>
-      <div className="page-heading">
+      <section className="workspace-page-title">
         <div>
-          <p className="eyebrow">THE COMMUNITY SIGNAL</p>
-          <h1>Good memes start with a good case.</h1>
-          <p>Nominations, tagged posts and the conversations behind the culture.</p>
+          <h1>What’s happening on X</h1>
+          <p>Catch new nominations and follow the conversation around launched memes.</p>
         </div>
-      </div>
-      <section className="panel empty-state">
-        <span className="empty-symbol">@</span>
-        <h2>No verified posts indexed.</h2>
-        <p>
-          Reply to an original post with @RuglessX. Include a token name, ticker, image idea and a
-          detailed thesis.
-        </p>
-        <p>
-          This app does not poll the X API. Posts appear once the ingestion and moderation service
-          is connected.
-        </p>
-        <a
-          className="primary-button"
-          href="https://x.com/RuglessX"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Find Rugless on X ↗
-        </a>
+        <span className="workspace-network">
+          <i className="status-dot" />
+          Solana
+        </span>
+      </section>
+      <section className="discovery-board">
+        <div className="app-section-title">
+          <h2>The community feed</h2>
+        </div>
+        <p className="directory-count">Published nominations and discussion · no X API polling</p>
+        <div className="x-feed-layout">
+          <div className="x-stream">
+            <div className="app-empty">
+              <span>[ ∅ ]</span>
+              <h3>No verified posts indexed.</h3>
+              <p>
+                Posts appear once the ingestion and moderation service is connected. This frontend
+                does not query X or incur X API costs.
+              </p>
+            </div>
+          </div>
+          <aside className="feed-guide">
+            <span className="feed-guide-ascii">@ → [ ? ] → [ ! ]</span>
+            <h3>
+              Don’t just tag it.
+              <br />
+              Make the case.
+            </h3>
+            <p>
+              Reply beneath a post, tag <strong>@RuglessX</strong> and tell us why the meme deserves
+              its own coin.
+            </p>
+            <ul>
+              <li>Suggest a token name and ticker.</li>
+              <li>Explain why the joke will travel.</li>
+              <li>Suggest an image people will recognize.</li>
+            </ul>
+            <a
+              className="button primary"
+              href={`https://x.com/intent/post?text=${encodeURIComponent('@RuglessX\nName: \nTicker: \nImage idea: \nMy thesis: ')}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Draft a nomination ↗
+            </a>
+            <p>
+              Discussing an existing coin? Include its CA so your thesis lands on the right token.
+            </p>
+          </aside>
+        </div>
       </section>
     </>
   );
